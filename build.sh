@@ -1,6 +1,6 @@
 #!/bin/sh
 
-output="./openocd-0.9.0rc1"
+output="openocd-0.9.0rc1"
 configureOptions="--enable-ftdi --enable-stlink --enable-jlink"
 
 
@@ -29,7 +29,7 @@ cd ../..
 
 PATH="$PATH:tools/libtool-2.4.6:tools/autoconf-2.69/bin:tools/automake-1.15/bin" ./bootstrap
 
-LIBUSB1_CFLAGS="-I`pwd`/tools/libusb-1.0.19/include/libusb-1.0" LIBUSB1_LIBS="-L`pwd`/tools/libusb-1.0.19/lib -lusb-1.0.19" PATH="$PATH:tools/libtool-2.4.6:tools/autoconf-2.69/bin:tools/automake-1.15/bin" ./configure $configureOptions
+LIBUSB1_CFLAGS="-I`pwd`/tools/libusb-1.0.19/include/libusb-1.0" LIBUSB1_LIBS="-L`pwd`/tools/libusb-1.0.19/lib -lusb-1.0.19" PATH="$PATH:tools/libtool-2.4.6:tools/autoconf-2.69/bin:tools/automake-1.15/bin" ./configure $configureOptions && make
 
 # at this point a defect in the openocd build system prevents the binary from linking correctly, so we will re-build:
 
@@ -58,6 +58,6 @@ if [ $? -ne 0 ]; then
 	exit -1
 fi
 
-echo Built $output
+echo Built src/$output
 
 cd ..
